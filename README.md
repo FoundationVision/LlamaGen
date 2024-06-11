@@ -1,7 +1,6 @@
 # Autoregressive Model Beats Diffusion: 🦙 Llama for Scalable Image Generation
 
-## Online Demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen)
-
+## Online Demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen) & Project Page [![Project Page](https://img.shields.io/badge/More_visualizations-Project_page-red)](https://peizesun.github.io/llamagen/)
 
 <p align="center">
 <img src="assets/teaser.jpg" width=95%>
@@ -14,7 +13,9 @@ This repo contains pre-trained model weights and training/sampling PyTorch(torch
 > [**Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation**]()<br>
 > [Peize Sun](https://peizesun.github.io/), [Yi Jiang](https://enjoyyi.github.io/), [Shoufa Chen](https://www.shoufachen.com/), [Shilong Zhang](https://jshilong.github.io/), [Bingyue Peng](), [Ping Luo](http://luoping.me/), [Zehuan Yuan](https://shallowyuan.github.io/)
 > <br>HKU, ByteDance<br>
- 
+
+You can find more visualizations on our [project page](https://peizesun.github.io/llamagen/).
+
 We introduce LlamaGen, a new family of image generation models that apply original ``next-token prediction`` paradigm of large language models to visual generation domain. It is an affirmative answer to whether vanilla autoregressive models, e.g., Llama, ``without inductive biases`` on visual signals can achieve state-of-the-art image generation performance if scaling properly. We reexamine design spaces of image tokenizers, scalability properties of image generation models, and their training data quality.
 
 In this repo, we release:
