@@ -18,7 +18,7 @@
 
 This repo contains pre-trained model weights and training/sampling PyTorch(torch>=2.1.0) codes used in
 
-> [**Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation**]()<br>
+> [**Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation**](https://arxiv.org/abs/2406.06525)<br>
 > [Peize Sun](https://peizesun.github.io/), [Yi Jiang](https://enjoyyi.github.io/), [Shoufa Chen](https://www.shoufachen.com/), [Shilong Zhang](https://jshilong.github.io/), [Bingyue Peng](), [Ping Luo](http://luoping.me/), [Zehuan Yuan](https://shallowyuan.github.io/)
 > <br>HKU, ByteDance<br>
 
