@@ -44,7 +44,7 @@ LlamaGen-XXL | 1.4B | FSDP | 24x24 | 2.34 | [c2i_XXL_384.pt](https://huggingface
 LlamaGen-3B  | 3.1B | FSDP | 24x24 | 2.18 | [c2i_3B_384.pt](https://huggingface.co/FoundationVision/LlamaGen/resolve/main/c2i_3B_384.pt)
 
 
-### Demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen)
+### Demo
 Please download models, put them in the folder `./pretrained_models`, and run
 ```
 python3 autoregressive/sample/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds16_c2i.pt --gpt-ckpt ./pretrained_models/c2i_L_384.pt --gpt-model GPT-L --image-size 384
@@ -53,6 +53,12 @@ python3 autoregressive/sample/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds1
 ```
 The generated images will be saved to `sample_c2i.png`.
 
+### Gradio Demo <a href='https://github.com/gradio-app/gradio'><img src='https://img.shields.io/github/stars/gradio-app/gradio'></a>
+
+You can use our online gradio demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen) or run gradio locally:
+```bash
+python app.py
+```
 
 
 ## 🚀 Text-conditional image generation (released before July 1st)
@@ -77,6 +83,8 @@ python3 autoregressive/sample/sample_t2i.py --vq-ckpt ./pretrained_models/vq_ds1
 python3 autoregressive/sample/sample_t2i.py --vq-ckpt ./pretrained_models/vq_ds16_t2i.pt --gpt-ckpt ./pretrained_models/t2i_XL_stage2_512.pt --gpt-model GPT-XL --image-size 512
 ```
 The generated images will be saved to `sample_t2i.png`.
+
+### Local Gradio Demo
 
 
 
