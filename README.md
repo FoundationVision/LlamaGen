@@ -10,8 +10,7 @@
 </div>
 
 
-<p align="cente
-r">
+<p align="center">
 <img src="assets/teaser.jpg" width=95%>
 <p>
 
