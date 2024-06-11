@@ -8,6 +8,7 @@
 <p>
 
 
+
 This repo contains pre-trained model weights and training/sampling PyTorch(torch>=2.1.0) codes used in
 
 > [**Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation**]()<br>
@@ -106,10 +107,10 @@ The majority of this project is licensed under MIT License. Portions of the proj
 
 ## BibTeX
 ```bibtex
-@article{
+@article{sun2024autoregressive,
   title={Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation},
-  author  =  {Peize Sun and Yi Jiang and Shoufa Chen and Shilong Zhang and Bingyue Peng and Ping Luo and Zehuan Yuan},
-  journal =  {arXiv preprint arXiv: 2024.00000},
-  year    =  {2024}
+  author={Sun, Peize and Jiang, Yi and Chen, Shoufa and Zhang, Shilong and Peng, Bingyue and Luo, Ping and Yuan, Zehuan},
+  journal={arXiv preprint arXiv:2406.06525},
+  year={2024}
 }
 ```
