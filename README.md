@@ -1,8 +1,17 @@
 # Autoregressive Model Beats Diffusion: 🦙 Llama for Scalable Image Generation
 
-## Online Demo [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen) & Project Page [![Project Page](https://img.shields.io/badge/More_visualizations-Project_page-red)](https://peizesun.github.io/llamagen/)
 
-<p align="center">
+<div align="center">
+
+[![demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Online_Demo-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen)&nbsp;
+[![arXiv](https://img.shields.io/badge/arXiv%20paper-2406.06525-b31b1b.svg)](https://arxiv.org/abs/2406.06525)&nbsp;
+[![project page](https://img.shields.io/badge/Project_page-More_visualizations-green)](https://peizesun.github.io/llamagen/)&nbsp;
+
+</div>
+
+
+<p align="cente
+r">
 <img src="assets/teaser.jpg" width=95%>
 <p>
 
