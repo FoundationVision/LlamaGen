@@ -1,7 +1,12 @@
+"""
+Script to push and load custom PyTorch models to/from the Hugging Face Hub.
+"""
+
 import argparse
-from huggingface_hub import hf_hub_download
 import torch
-from tokenizer.tokenizer_image.vq_model import VQ_models
+from tokenizer.tokenizer_image.vq_model import VQ_models, VQModel
+
+from huggingface_hub import hf_hub_download
 
 
 model2ckpt = {
@@ -26,8 +31,6 @@ def load_model(args):
     return vq_model
 
 
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--gpt-model", type=str, default="GPT-XL")
 parser.add_argument("--vq-model", type=str, choices=list(VQ_models.keys()), default="VQ-16")
@@ -35,5 +38,11 @@ parser.add_argument("--codebook-size", type=int, default=16384, help="codebook s
 parser.add_argument("--codebook-embed-dim", type=int, default=8, help="codebook dimension for vector quantization")
 args = parser.parse_args()
 
+# load weights
 vq_model = load_model(args)
+
+# push to hub
 vq_model.push_to_hub("nielsr/vq-ds16-c2i")
+
+# reload
+model = VQModel.from_pretrained("nielsr/vq-ds16-c2i")
