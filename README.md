@@ -22,8 +22,13 @@ This repo contains pre-trained model weights and training/sampling PyTorch(torch
 > [Peize Sun](https://peizesun.github.io/), [Yi Jiang](https://enjoyyi.github.io/), [Shoufa Chen](https://www.shoufachen.com/), [Shilong Zhang](https://jshilong.github.io/), [Bingyue Peng](), [Ping Luo](http://luoping.me/), [Zehuan Yuan](https://shallowyuan.github.io/)
 > <br>HKU, ByteDance<br>
 
-You can find more visualizations on our [project page](https://peizesun.github.io/llamagen/).
+You can find more visualizations on [![project page](https://img.shields.io/badge/Project_page-More_visualizations-green)](https://peizesun.github.io/llamagen/)
 
+## 🔥 Update
+- [2023.06.11] Image tokenizers and AR models for class-conditional image generation are released !
+- [2024.06.11] Code and Demo are released !
+
+## 🌿 Introduction
 We introduce LlamaGen, a new family of image generation models that apply original ``next-token prediction`` paradigm of large language models to visual generation domain. It is an affirmative answer to whether vanilla autoregressive models, e.g., Llama, ``without inductive biases`` on visual signals can achieve state-of-the-art image generation performance if scaling properly. We reexamine design spaces of image tokenizers, scalability properties of image generation models, and their training data quality.
 
 In this repo, we release:
@@ -33,7 +38,7 @@ In this repo, we release:
 * Online demos in  [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen) for running pre-trained models.
 * Supported LLM serving framework to enable 300% - 400% speedup.
 
-## 🔥 Class-conditional image generation on ImageNet
+## 🦄 Class-conditional image generation on ImageNet
 ### VQ-VAE models
 Method | params | tokens | rFID (256x256) | weight
 --- |:---:|:---:|:---:|:---:
