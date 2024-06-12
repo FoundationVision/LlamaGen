@@ -8,6 +8,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from huggingface_hub import PyTorchModelHubMixin
+
 
 @dataclass
 class ModelArgs:
@@ -25,7 +27,7 @@ class ModelArgs:
 
 
 
-class VQModel(nn.Module):
+class VQModel(nn.Module, PyTorchModelHubMixin):
     def __init__(self, config: ModelArgs):
         super().__init__()
         self.config = config
