@@ -27,7 +27,7 @@ class ModelArgs:
 
 
 
-class VQModel(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/FoundationVision/LlamaGen", license="mit", tags=["text-to-image"])
+class VQModel(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/FoundationVision/LlamaGen", license="mit", tags=["llamagen", "text-to-image"])
     def __init__(self, config: ModelArgs):
         super().__init__()
         self.config = config
