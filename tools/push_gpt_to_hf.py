@@ -6,7 +6,7 @@ torch.backends.cudnn.allow_tf32 = True
 import argparse
 
 from tokenizer.tokenizer_image.vq_model import VQ_models
-from autoregressive.models.gpt import GPT_models, Transformer
+from autoregressive.models.gpt_hf import GPT_models_HF, TransformerHF
 
 device = "cuda" if torch.cuda_is_available() else "cpu"
 
@@ -18,7 +18,7 @@ def main(args):
     # create and load gpt model
     precision = {'none': torch.float32, 'bf16': torch.bfloat16, 'fp16': torch.float16}[args.precision]
     latent_size = args.image_size // args.downsample_size
-    gpt_model = GPT_models[args.gpt_model](
+    gpt_model = GPT_models_HF[args.gpt_model](
         vocab_size=args.codebook_size,
         block_size=latent_size ** 2,
         num_classes=args.num_classes,
@@ -43,11 +43,11 @@ def main(args):
     del checkpoint
 
     # push to hub
-    repo_id = f"nielsr/{args.gpt_model}-{args.image_size}"
+    repo_id = f"FoundationVision/{args.gpt_model}-{args.image_size}"
     gpt_model.push_to_hub(repo_id)
 
     # reload
-    model = Transformer.from_pretrained(repo_id)
+    model = TransformerHF.from_pretrained(repo_id)
 
 
 if __name__ == "__main__":

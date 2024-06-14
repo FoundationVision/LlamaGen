@@ -14,8 +14,6 @@ import torch.nn as nn
 from torch.nn import functional as F
 from utils.drop_path import DropPath
 
-from huggingface_hub import PyTorchModelHubMixin
-
 
 def find_multiple(n: int, k: int):
     if n % k == 0:
@@ -259,7 +257,7 @@ class TransformerBlock(nn.Module):
         return out
 
 
-class Transformer(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/FoundationVision/LlamaGen", license="mit", tags=["llamagen", "text-to-image"]):
+class Transformer(nn.Module):
     def __init__(self, config: ModelArgs):
         super().__init__()
         self.config = config
