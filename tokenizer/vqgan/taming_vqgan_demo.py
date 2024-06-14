@@ -7,7 +7,7 @@ from omegaconf import OmegaConf
 from tokenizer.vqgan.model import VQModel
 from tokenizer.vqgan.model import VQGAN_FROM_TAMING
 
-# before runing demo, make sure to:
+# before running demo, make sure to:
 # (1) download all needed models from https://github.com/CompVis/taming-transformers and put in pretrained_models/
 # (2) pip install pytorch_lightning
 # (3) python3 tools/convert_pytorch_lightning_to_torch.py
