@@ -259,7 +259,7 @@ class TransformerBlock(nn.Module):
         return out
 
 
-class Transformer(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/FoundationVision/LlamaGen", license="mit", tags=["llamagen", "text-to-image"])
+class Transformer(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/FoundationVision/LlamaGen", license="mit", tags=["llamagen", "text-to-image"]):
     def __init__(self, config: ModelArgs):
         super().__init__()
         self.config = config
