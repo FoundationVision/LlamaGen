@@ -25,6 +25,7 @@ This repo contains pre-trained model weights and training/sampling PyTorch(torch
 You can find more visualizations on [![project page](https://img.shields.io/badge/Project_page-More_visualizations-green)](https://peizesun.github.io/llamagen/)
 
 ## 🔥 Update
+- [2023.06.15] All models ranging from 100M to 3B parameters are supported by vLLM ! 
 - [2023.06.11] Image tokenizers and AR models for class-conditional image generation are released !
 - [2024.06.11] Code and Demo are released !
 
@@ -36,7 +37,7 @@ In this repo, we release:
 * Seven class-conditional generation models ranging from 100M to 3B parameters.
 * Two text-conditional generation models of 700M parameters.
 * Online demos in  [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/FoundationVision/LlamaGen) for running pre-trained models.
-* Supported LLM serving framework to enable 300% - 400% speedup.
+* Supported vLLM serving framework to enable 300% - 400% speedup.
 
 ## 🦄 Class-conditional image generation on ImageNet
 ### VQ-VAE models
@@ -104,7 +105,7 @@ The generated images will be saved to `sample_t2i.png`.
 
 
 ## ⚡ Serving
-We use serving framework [vllm](https://github.com/vllm-project/vllm) to enable higher throughput. Please refer to [serving readme](autoregressive/serve/README.md) to install the required packages.  
+We use serving framework [vLLM](https://github.com/vllm-project/vllm) to enable higher throughput. Please refer to [serving readme](autoregressive/serve/README.md) to install the required packages.  
 ```
 python3 autoregressive/serve/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds16_c2i.pt --gpt-ckpt ./pretrained_models/c2i_XXL_384.pt --gpt-model GPT-XXL --from-fsdp --image-size 384
 ```
