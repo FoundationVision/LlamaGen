@@ -139,11 +139,10 @@ class Attention(nn.Module):
         self.wo = nn.Linear(config.dim, config.dim, bias=False)
 
         # pagedAttention
-        self.attn = pagedAttention(self.n_head,
-                              self.head_dim,
-                              self.head_dim**-0.5,
-                              num_kv_heads=self.n_kv_head,
-                              )
+        if config.dim // config.n_head == 100:
+            self.attn = None  # for this case, we need to overwrite the attn in AttentionMonkeyPatch
+        else:
+            self.attn = pagedAttention(self.n_head, self.head_dim, self.head_dim**-0.5, num_kv_heads=self.n_kv_head)
 
         # 2d rotary pos embedding
         grid_size = int(config.block_size ** 0.5)
@@ -176,11 +175,62 @@ class Attention(nn.Module):
         return output
 
 
+class AttentionMonkeyPatch(Attention):
+    """
+    Note:
+    In vllm, PagedAttention supports head sizes [64, 80, 96, 112, 128, 256].
+    However, LlamaGen-3B model has head size 100 (for some historical reasons).
+    Here we hack Attnetion to enable vllm support head size 100.
+    """
+    def __init__(self, config: ModelArgs):
+        super().__init__(config)
+        # overwrite PagedAttention
+        # hard-coded 112 for LlamaGen-3B model
+        self.attn = pagedAttention(self.n_head, 112, 100**-0.5, num_kv_heads=self.n_kv_head)
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        positions: torch.Tensor,
+        kv_cache: torch.Tensor,
+        attn_metadata: AttentionMetadata,
+    ):
+        kv_size = self.n_kv_head * self.head_dim
+        xq, xk, xv = self.wqkv(x).split([self.dim, kv_size, kv_size], dim=-1)
+
+        xq = xq.view(*xq.shape[:-1], 1, self.n_head, self.head_dim)
+        xk = xk.view(*xk.shape[:-1], 1, self.n_kv_head, self.head_dim)
+        freqs_cis = self.freqs_cis[positions].unsqueeze(1)
+        xq = apply_rotary_emb_bs(xq, freqs_cis)
+        xk = apply_rotary_emb_bs(xk, freqs_cis)
+        xq = xq.flatten(1)
+        xk = xk.flatten(1)
+        ############ padding to 112 to make vllm happy ############
+        zero_pad = torch.zeros(xq.shape[0], self.n_head, 112 - 100, device=xq.device, dtype=xq.dtype)
+        xq = xq.reshape(xq.shape[0], self.n_head, self.head_dim)
+        xk = xk.reshape(xk.shape[0], self.n_kv_head, self.head_dim)
+        xv = xv.reshape(xv.shape[0], self.n_kv_head, self.head_dim)
+        xq = torch.concat([xq, zero_pad], dim=-1).flatten(1)
+        xk = torch.concat([xk, zero_pad], dim=-1).flatten(1)
+        xv = torch.concat([xv, zero_pad], dim=-1).flatten(1)
+
+        output = self.attn(xq, xk, xv, kv_cache, attn_metadata)
+        ############ de-padding to 100 ############
+        output = output.reshape(output.shape[0], self.n_head, 112)
+        output = output[..., :100].flatten(1)
+
+        output = self.wo(output)
+
+        return output
+
 
 class TransformerBlock(nn.Module):
     def __init__(self, config: ModelArgs):
         super().__init__()
-        self.attention = Attention(config)
+        if config.dim // config.n_head == 100:
+            self.attention = AttentionMonkeyPatch(config)
+        else:
+            self.attention = Attention(config)
         self.feed_forward = FeedForward(config)
         self.attention_norm = RMSNorm(config.dim, eps=config.norm_eps)
         self.ffn_norm = RMSNorm(config.dim, eps=config.norm_eps)
