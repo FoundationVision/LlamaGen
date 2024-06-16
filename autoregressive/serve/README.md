@@ -9,11 +9,11 @@ pip install vllm==0.4.1
 
 Method | params | baseline(s) | vllm(s) | speed-up ratio 
 --- |:---:|:---:|:---:|:---:
-GPT-B   | 111M | 7.80    | 2.39      |  326 %
-GPT-L   | 343M | 13.72   | 3.48      |  380 %
-GPT-XL  | 775M | 19.76   | 4.84      |  408 %
-GPT-XXL | 1.4B | 26.38   | 6.36      |  414 %
-GPT-3B  | 3.1B | -       | -         |   -
+[GPT-B](./fake_json/GPT-B.json)    | 111M | 7.80    | 2.39      |  326 %
+[GPT-L](./fake_json/GPT-L.json)    | 343M | 13.72   | 3.48      |  380 %
+[GPT-XL](./fake_json/GPT-XL.json)  | 775M | 19.76   | 4.84      |  408 %
+[GPT-XXL](./fake_json/GPT-XXL.json)| 1.4B | 26.38   | 6.36      |  414 %
+[GPT-3B](./fake_json/GPT-3B.json)  | 3.1B | 14.73   | 6.26      |  235 %
 
 ```
 ### GPT-B
@@ -48,6 +48,11 @@ python3 autoregressive/sample/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds1
 python3 autoregressive/serve/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds16_c2i.pt --gpt-ckpt ./pretrained_models/c2i_XXL_384.pt --from-fsdp --gpt-model GPT-XXL --image-size 384
 
 
-```
+### GPT-3B
+# 14.73 seconds
+python3 autoregressive/sample/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds16_c2i.pt --gpt-ckpt ./pretrained_models/c2i_3B_384.pt --from-fsdp --gpt-model GPT-3B --image-size 384
 
-In 3B model, head size 100 is not supported by PagedAttention, supported head sizes are: [64, 80, 96, 112, 128, 256].
+# 6.26 seconds
+python3 autoregressive/serve/sample_c2i.py --vq-ckpt ./pretrained_models/vq_ds16_c2i.pt --gpt-ckpt ./pretrained_models/c2i_3B_384.pt --from-fsdp --gpt-model GPT-3B --image-size 384
+
+```
