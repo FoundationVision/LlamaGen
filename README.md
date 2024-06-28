@@ -25,9 +25,9 @@ This repo contains pre-trained model weights and training/sampling PyTorch(torch
 You can find more visualizations on [![project page](https://img.shields.io/badge/Project_page-More_visualizations-green)](https://peizesun.github.io/llamagen/)
 
 ## 🔥 Update
-- [2023.06.28] Image tokenizers and AR models for text-conditional image generation are released !
-- [2023.06.15] All models ranging from 100M to 3B parameters are supported by vLLM ! 
-- [2023.06.11] Image tokenizers and AR models for class-conditional image generation are released !
+- [2024.06.28] Image tokenizers and AR models for text-conditional image generation are released ! Try it !
+- [2024.06.15] All models ranging from 100M to 3B parameters are supported by vLLM ! 
+- [2024.06.11] Image tokenizers and AR models for class-conditional image generation are released !
 - [2024.06.11] Code and Demo are released !
 
 ## 🌿 Introduction
