@@ -25,6 +25,7 @@ This repo contains pre-trained model weights and training/sampling PyTorch(torch
 You can find more visualizations on [![project page](https://img.shields.io/badge/Project_page-More_visualizations-green)](https://peizesun.github.io/llamagen/)
 
 ## 🔥 Update
+- [2023.06.28] Image tokenizers and AR models for text-conditional image generation are released !
 - [2023.06.15] All models ranging from 100M to 3B parameters are supported by vLLM ! 
 - [2023.06.11] Image tokenizers and AR models for class-conditional image generation are released !
 - [2024.06.11] Code and Demo are released !
@@ -81,13 +82,13 @@ python app.py
 ### VQ-VAE models
 Method | params | tokens | data | weight
 --- |:---:|:---:|:---:|:---:
-vq_ds16_t2i | 72M | 16x16 | LAION COCO (50M) + internal data (10M) | vq_ds16_t2i.pt
+vq_ds16_t2i | 72M | 16x16 | LAION COCO (50M) + internal data (10M) | [vq_ds16_t2i.pt](https://huggingface.co/peizesun/llamagen_t2i/resolve/main/vq_ds16_t2i.pt)
 
 ### AR models
 Method | params | tokens | data | weight 
 --- |:---:|:---:|:---:|:---:
-LlamaGen-XL  | 775M | 24x24 | LAION COCO (50M) | t2i_XL_stage1_256.pt
-LlamaGen-XL  | 775M | 32x32 | internal data (10M) | t2i_XL_stage2_512.pt
+LlamaGen-XL  | 775M | 16x16 | LAION COCO (50M) | [t2i_XL_stage1_256.pt](https://huggingface.co/peizesun/llamagen_t2i/resolve/main/t2i_XL_stage1_256.pt)
+LlamaGen-XL  | 775M | 32x32 | internal data (10M) | [t2i_XL_stage2_512.pt](https://huggingface.co/peizesun/llamagen_t2i/resolve/main/t2i_XL_stage2_512.pt)
 
 ### Demo
 Before running demo, please refer to [language readme](language/README.md) to install the required packages and language models.  
