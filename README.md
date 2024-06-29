@@ -78,7 +78,7 @@ python app.py
 ```
 
 
-## 🚀 Text-conditional image generation (released before July 1st)
+## 🚀 Text-conditional image generation
 ### VQ-VAE models
 Method | params | tokens | data | weight
 --- |:---:|:---:|:---:|:---:
