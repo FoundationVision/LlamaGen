@@ -33,13 +33,18 @@ warnings.filterwarnings('ignore')
 #                                  Training Loop                                #
 #################################################################################
 
-def main(args):
+def main(args): 
+    #args: bash scripts/tokenizer/train_vq.sh --cloud-save-path /path/to/cloud_disk --data-path /path/to/imagenet/train --image-size 256 --vq-model VQ-16
+    # --nnodes=$nnodes --nproc_per_node=$nproc_per_node --node_rank=$node_rank \
+    # --master_addr=$master_addr --master_port=$master_port \
+    # tokenizer/tokenizer_image/vq_train.py "$@"
+    
     """
     Trains a new model.
     """
     assert torch.cuda.is_available(), "Training currently requires at least one GPU."
     
-    # Setup DDP:
+    # Setup DDP: multiple GPU Training을 위한 data parallelism
     init_distributed_mode(args)
     assert args.global_batch_size % dist.get_world_size() == 0, f"Batch size must be divisible by world size."
     rank = dist.get_rank()
@@ -74,7 +79,7 @@ def main(args):
     # training env
     logger.info(f"Starting rank={rank}, seed={seed}, world_size={dist.get_world_size()}.")
 
-    # create and load model
+    # create and load model --> 내가 args에 지정한 모델을 불러온다.
     vq_model = VQ_models[args.vq_model](
         codebook_size=args.codebook_size,
         codebook_embed_dim=args.codebook_embed_dim,
@@ -112,7 +117,7 @@ def main(args):
 
     # Setup data:
     transform = transforms.Compose([
-        transforms.Lambda(lambda pil_image: random_crop_arr(pil_image, args.image_size)),
+        transforms.Lambda(lambda pil_image: random_crop_arr(pil_image, args.image_size)), #얘네가 직접 만든 random_crop_arr 함수
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5], inplace=True)
