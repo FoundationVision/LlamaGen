@@ -118,11 +118,11 @@ def main(args):
     # Setup data:
     transform = transforms.Compose([
         transforms.Lambda(lambda pil_image: random_crop_arr(pil_image, args.image_size)), #얘네가 직접 만든 random_crop_arr 함수
-        transforms.RandomHorizontalFlip(),
+        transforms.RandomHorizontalFlip(), #transforms 라이브러리에 있는 함수
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5], inplace=True)
     ])
-    dataset = build_dataset(args, transform=transform)
+    dataset = build_dataset(args, transform=transform) #위의 정보들로 dataset 만들기
     sampler = DistributedSampler(
         dataset,
         num_replicas=dist.get_world_size(),
