@@ -10,9 +10,6 @@ master_addr="localhost"   # address of the master node
 master_port=29500         # port of the master node
 
 
->>>>>>> 515239903504a5248d5915e9c4399344dc2ebf60
-
-
 torchrun \
 --nnodes=$nnodes --nproc_per_node=$nproc_per_node --node_rank=$node_rank \
 --master_addr=$master_addr --master_port=$master_port \
