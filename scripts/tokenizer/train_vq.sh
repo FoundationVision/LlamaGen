@@ -16,4 +16,4 @@ torchrun \
 tokenizer/tokenizer_image/vq_train.py "$@"
 
 
-#bash scripts/tokenizer/train_vq.sh --cloud-save-path . --data-path ~/dataset/imagenet.py --image-size 256 --vq-model VQ-16   
+#bash scripts/tokenizer/train_vq.sh --cloud-save-path . --data-path ~/dataset/imagenet.py --image-size 256 --vq-model VQ-16
