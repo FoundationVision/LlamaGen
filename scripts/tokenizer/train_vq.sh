@@ -1,7 +1,7 @@
 # !/bin/bash
 set -x
 
-=======
+
 # Set default values for single-node training
 nnodes=1                  # number of nodes
 nproc_per_node=1          # number of processes per node
