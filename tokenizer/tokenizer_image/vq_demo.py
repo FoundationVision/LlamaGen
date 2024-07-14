@@ -7,7 +7,8 @@ import numpy as np
 from PIL import Image
 
 import sys
-sys.path.append("/Users/ryankwon03/Documents/GitHub/LlamaGen")
+#sys.path.append("/Users/ryankwon03/Documents/GitHub/LlamaGen")
+sys.path.append("C:/Users/user/Documents/GitHub/LlamaGen")
 
 from tokenizer.tokenizer_image.vq_model import VQ_models
 from dataset.augmentation import center_crop_arr
@@ -75,11 +76,11 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--image-path", type=str, default="assets/example.jpg")
+    parser.add_argument("--image-path", type=str, default="assets/teaser.jpg")
     parser.add_argument("--output-dir", type=str, default="output_vq_demo")
     parser.add_argument("--suffix", type=str, default="tokenizer_image")
-    parser.add_argument("--vq-model", type=str, choices=list(VQ_models.keys()), default="VQ-8")
-    parser.add_argument("--vq-ckpt", type=str, default=None, help="ckpt path for vq model")
+    parser.add_argument("--vq-model", type=str, choices=list(VQ_models.keys()), default="VQ-16")
+    parser.add_argument("--vq-ckpt", type=str, default="pretrained_models/vq_ds16_c2i.pt", help="ckpt path for vq model")
     parser.add_argument("--codebook-size", type=int, default=16384, help="codebook size for vector quantization")
     parser.add_argument("--codebook-embed-dim", type=int, default=8, help="codebook dimension for vector quantization")
     parser.add_argument("--image-size", type=int, choices=[256, 384, 448, 512, 1024], default=512)
