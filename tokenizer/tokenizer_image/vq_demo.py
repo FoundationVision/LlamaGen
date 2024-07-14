@@ -6,11 +6,15 @@ import argparse
 import numpy as np
 from PIL import Image
 
+import sys
+sys.path.append("/Users/ryankwon03/Documents/GitHub/LlamaGen")
+
 from tokenizer.tokenizer_image.vq_model import VQ_models
 from dataset.augmentation import center_crop_arr
 
 
 def main(args):
+    
     # Setup PyTorch:
     torch.manual_seed(args.seed)
     torch.set_grad_enabled(False)
@@ -22,7 +26,7 @@ def main(args):
         codebook_embed_dim=args.codebook_embed_dim)
     model.to(device)
     model.eval()
-    checkpoint = torch.load(args.vq_ckpt, map_location="cpu")
+    checkpoint = torch.load(args.vq_ckpt, map_location="cpu") #error
     if "ema" in checkpoint:  # ema
         model_weight = checkpoint["ema"]
     elif "model" in checkpoint:  # ddp
@@ -74,7 +78,7 @@ if __name__ == "__main__":
     parser.add_argument("--image-path", type=str, default="assets/example.jpg")
     parser.add_argument("--output-dir", type=str, default="output_vq_demo")
     parser.add_argument("--suffix", type=str, default="tokenizer_image")
-    parser.add_argument("--vq-model", type=str, choices=list(VQ_models.keys()), default="VQ-16")
+    parser.add_argument("--vq-model", type=str, choices=list(VQ_models.keys()), default="VQ-8")
     parser.add_argument("--vq-ckpt", type=str, default=None, help="ckpt path for vq model")
     parser.add_argument("--codebook-size", type=int, default=16384, help="codebook size for vector quantization")
     parser.add_argument("--codebook-embed-dim", type=int, default=8, help="codebook dimension for vector quantization")
